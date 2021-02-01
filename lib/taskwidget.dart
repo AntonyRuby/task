@@ -71,7 +71,7 @@ class Taskwidget extends StatelessWidget {
                             // color: Theme.of(context).primaryColor,
                             fontSize: 24),
                       ),
-                      SizedBox(height: 5),
+                      SizedBox(height: 2),
                       if (task.summary.isNotEmpty)
                         Container(
                           margin: EdgeInsets.only(top: 4),

@@ -45,22 +45,22 @@ class _AddTasksState extends State<AddTasks> {
                       })
                 ],
               ),
-              FlatButton(
-                onPressed: () {},
-                // pickDate,
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.date_range,
-                      color: Theme.of(context).accentColor,
-                    ),
-                    SizedBox(
-                      width: 4,
-                    ),
-                    Text("Pick Date")
-                  ],
-                ),
-              ),
+              // FlatButton(
+              //   onPressed: () {},
+              //   // pickDate,
+              //   child: Row(
+              //     children: [
+              //       Icon(
+              //         Icons.date_range,
+              //         color: Theme.of(context).accentColor,
+              //       ),
+              //       SizedBox(
+              //         width: 4,
+              //       ),
+              //       Text("Pick Date")
+              //     ],
+              //   ),
+              // ),
               SizedBox(
                 height: 8,
               ),
