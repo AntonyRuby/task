@@ -10,48 +10,68 @@ class AddTasks extends StatefulWidget {
 }
 
 class _AddTasksState extends State<AddTasks> {
+  // Future pickDate() async {
+  //   DateTime datepick = await showDatePicker(
+  //       context: context,
+  //       initialDate: new DateTime.now(),
+  //       firstDate: DateTime.now().add(Duration(days: -365)),
+  //       lastDate: DateTime.now().add(Duration(days: -365)));
+  // }
+
   final formkey = GlobalKey<FormState>();
   String title = '';
   String summary = '';
 
   @override
   Widget build(BuildContext context) => AlertDialog(
-        content: Form(
-          key: formkey,
-          child: SingleChildScrollView(
+          content: Form(
+        key: formkey,
+        child: SingleChildScrollView(
             child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+              Row(
+                children: [
+                  Text(
+                    "Add Task",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                  ),
+                  Spacer(),
+                  IconButton(
+                      icon: Icon(Icons.close),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      })
+                ],
+              ),
+              FlatButton(
+                onPressed: () {},
+                // pickDate,
+                child: Row(
                   children: [
-                    Text(
-                      "Add Task",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    Icon(
+                      Icons.date_range,
+                      color: Theme.of(context).accentColor,
                     ),
-                    Spacer(),
-                    IconButton(
-                        icon: Icon(Icons.close),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        })
+                    SizedBox(
+                      width: 4,
+                    ),
+                    Text("Pick Date")
                   ],
                 ),
-                SizedBox(
-                  height: 8,
-                ),
-                Taskform(
-                  onChangedTitle: (title) => setState(() => this.title = title),
-                  onChangedSummary: (summary) =>
-                      setState(() => this.summary = summary),
-                  onSave: addTask,
-                )
-              ],
-            ),
-          ),
-        ),
-      );
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Taskform(
+                onChangedTitle: (title) => setState(() => this.title = title),
+                onChangedSummary: (summary) =>
+                    setState(() => this.summary = summary),
+                onSave: addTask,
+              ),
+            ])),
+      ));
   void addTask() {
     final isValid = formkey.currentState.validate();
 

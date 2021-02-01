@@ -71,6 +71,7 @@ class Taskwidget extends StatelessWidget {
                             // color: Theme.of(context).primaryColor,
                             fontSize: 24),
                       ),
+                      SizedBox(height: 5),
                       if (task.summary.isNotEmpty)
                         Container(
                           margin: EdgeInsets.only(top: 4),
@@ -79,6 +80,13 @@ class Taskwidget extends StatelessWidget {
                             style: TextStyle(fontSize: 21, height: 1.5),
                           ),
                         ),
+                      SizedBox(height: 10),
+                      Text(
+                        "Created: ${task.createdTime}",
+                        // Text(
+                        // "Created: ${DateFormat('YYYY/MM/DD).format(task.createdTime)}",
+                        style: TextStyle(fontSize: 16),
+                      )
                     ],
                   ))
                 ],
