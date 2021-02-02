@@ -33,6 +33,7 @@ dependencies:
   provider: ^4.3.2+2
   flutter_slidable: ^0.5.7
   firebase_analytics: ^5.0.2
+  showcaseview: ^0.1.6
 
 dev_dependencies:
   flutter_test:
