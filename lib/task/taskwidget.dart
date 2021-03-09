@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
-import 'package:task/edittaskpage.dart';
+import 'package:task/task/edittaskpage.dart';
 import 'package:task/task.dart';
-import 'package:task/tasks.dart';
+import 'package:task/task/tasks.dart';
 import 'package:task/utils.dart';
 
 class Taskwidget extends StatelessWidget {
@@ -40,7 +40,6 @@ class Taskwidget extends StatelessWidget {
           child: GestureDetector(
             onTap: () => editTask(context, task),
             child: Container(
-              // color: Colors.white,
               padding: const EdgeInsets.all(20.0),
               child: Row(
                 children: [
@@ -67,18 +66,13 @@ class Taskwidget extends StatelessWidget {
                       Text(
                         task.title,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            // color: Theme.of(context).primaryColor,
-                            fontSize: 24),
+                            fontWeight: FontWeight.bold, fontSize: 24),
                       ),
                       SizedBox(height: 2),
                       if (task.summary.isNotEmpty)
-                        Container(
-                          margin: EdgeInsets.only(top: 4),
-                          child: Text(
-                            task.summary,
-                            style: TextStyle(fontSize: 21, height: 1.5),
-                          ),
+                        Text(
+                          task.summary,
+                          style: TextStyle(fontSize: 21, height: 1.5),
                         ),
                       SizedBox(height: 10),
                       Text(

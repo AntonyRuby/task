@@ -1,14 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:task/cloud.dart';
-import 'package:task/tasklist.dart';
-import 'package:task/tasks.dart';
-import 'addtasks.dart';
-import 'completedlist.dart';
+import 'package:task/task/addtasks.dart';
+import 'package:task/task/tasklist.dart';
+import 'package:task/task/tasks.dart';
+
+import 'task/completedlist.dart';
 import 'task.dart';
 
 class Homepage extends StatefulWidget {
+  static const routeName = '/home';
   @override
   _HomepageState createState() => _HomepageState();
 }
@@ -37,7 +41,13 @@ ThemeData darkTheme = ThemeData(
   ),
 );
 
-class _HomepageState extends State<Homepage> {
+class _HomepageState extends State<Homepage>
+    with SingleTickerProviderStateMixin {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  bool isloggedin = false;
+
+  AnimationController _controller;
+
   bool light = true;
   int selectedIndex = 0;
   final keyOne = GlobalKey();
@@ -50,6 +60,14 @@ class _HomepageState extends State<Homepage> {
   @override
   void initState() {
     super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 300),
+      lowerBound: 0.0,
+      upperBound: 0.1,
+    )..addListener(() {
+        setState(() {});
+      });
 
     WidgetsBinding.instance.addPostFrameCallback((_) =>
         ShowCaseWidget.of(context).startShowCase(
@@ -68,12 +86,7 @@ class _HomepageState extends State<Homepage> {
       home: Scaffold(
         appBar: AppBar(
           title: Center(
-            child:
-                //   CustomShowcaseWidget(
-                // globalKey: keyFive,
-                // description: 'Swipe Right & Left to Edit & Delete Task ',
-                // child:
-                Text(
+            child: Text(
               "Task",
               style: TextStyle(
                   color: Colors.white,
@@ -133,7 +146,11 @@ class _HomepageState extends State<Homepage> {
                       return Center(child: CircularProgressIndicator());
                     default:
                       if (snapshot.hasError) {
-                        return Text('Please Try Later');
+                        return Center(
+                            child: Text(
+                          'Please Try Later',
+                          style: TextStyle(fontSize: 20),
+                        ));
                       } else {
                         final task = snapshot.data;
                         final provider = Provider.of<TaskProvider>(context);

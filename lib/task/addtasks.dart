@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task/task.dart';
-import 'package:task/tasks.dart';
+import 'package:task/task/tasks.dart';
 import 'taskform.dart';
 
 class AddTasks extends StatefulWidget {
@@ -10,14 +10,6 @@ class AddTasks extends StatefulWidget {
 }
 
 class _AddTasksState extends State<AddTasks> {
-  // Future pickDate() async {
-  //   DateTime datepick = await showDatePicker(
-  //       context: context,
-  //       initialDate: new DateTime.now(),
-  //       firstDate: DateTime.now().add(Duration(days: -365)),
-  //       lastDate: DateTime.now().add(Duration(days: -365)));
-  // }
-
   final formkey = GlobalKey<FormState>();
   String title = '';
   String summary = '';
@@ -45,22 +37,6 @@ class _AddTasksState extends State<AddTasks> {
                       })
                 ],
               ),
-              // FlatButton(
-              //   onPressed: () {},
-              //   // pickDate,
-              //   child: Row(
-              //     children: [
-              //       Icon(
-              //         Icons.date_range,
-              //         color: Theme.of(context).accentColor,
-              //       ),
-              //       SizedBox(
-              //         width: 4,
-              //       ),
-              //       Text("Pick Date")
-              //     ],
-              //   ),
-              // ),
               SizedBox(
                 height: 8,
               ),

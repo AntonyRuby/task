@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:task/cloud.dart';
-import 'package:task/tasks.dart';
+import 'package:task/task/tasks.dart';
 
 class TaskProvider extends ChangeNotifier {
   List<Task> _tasks = [];
