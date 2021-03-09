@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../authentication.dart';
@@ -10,6 +12,7 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
   final GlobalKey<FormState> formkey = GlobalKey();
   TextEditingController passwordController = new TextEditingController();
   Map<String, String> authdata = {'email': '', 'password': ''};
@@ -58,9 +61,9 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Form(
-      key: formkey,
-      child: SingleChildScrollView(
+        body: SingleChildScrollView(
+      child: Form(
+        key: formkey,
         child: Column(
           children: [
             Padding(

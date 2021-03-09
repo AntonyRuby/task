@@ -15,6 +15,16 @@ class FrontPage extends StatefulWidget {
 }
 
 class _FrontPageState extends State<FrontPage> {
+  // navigateToLogin() async {
+  //   Navigator.push(
+  //       context, MaterialPageRoute(builder: (context) => Homepage()));
+  // }
+
+  // navigateToSignUp() async {
+  //   Navigator.push(
+  //       context, MaterialPageRoute(builder: (context) => Homepage()));
+  // }
+
   final FirebaseAuth auth = FirebaseAuth.instance;
   final GlobalKey<FormState> formkey = GlobalKey();
 

@@ -45,6 +45,7 @@ class _HomepageState extends State<Homepage>
     with SingleTickerProviderStateMixin {
   final FirebaseAuth auth = FirebaseAuth.instance;
   bool isloggedin = false;
+  
 
   AnimationController _controller;
 
