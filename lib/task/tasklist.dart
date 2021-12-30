@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task/src/models/user.dart';
 import 'package:task/task.dart';
 import 'package:task/task/taskwidget.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +8,9 @@ class Tasklist extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<TaskProvider>(context);
-    final tasks = provider.tasks;
+    final tasks = provider.tasks
+        .where((element) => element.owner == user.userId)
+        .toList();
 
     return tasks.isEmpty
         ? Center(

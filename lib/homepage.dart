@@ -1,13 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:showcaseview/showcaseview.dart';
-import 'package:task/cloud.dart';
+import 'package:showcaseview/showcase.dart';
+import 'package:showcaseview/showcase_widget.dart';
+import 'package:task/src/models/cloud.dart';
 import 'package:task/task/addtasks.dart';
 import 'package:task/task/tasklist.dart';
-import 'package:task/task/tasks.dart';
+import 'package:task/src/models/tasks.dart';
 
+import 'login/signinwithgoogle.dart';
 import 'task/completedlist.dart';
 import 'task.dart';
 
@@ -45,9 +46,8 @@ class _HomepageState extends State<Homepage>
     with SingleTickerProviderStateMixin {
   final FirebaseAuth auth = FirebaseAuth.instance;
   bool isloggedin = false;
-  
 
-  AnimationController _controller;
+  // AnimationController _controller;
 
   bool light = true;
   int selectedIndex = 0;
@@ -61,14 +61,15 @@ class _HomepageState extends State<Homepage>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 300),
-      lowerBound: 0.0,
-      upperBound: 0.1,
-    )..addListener(() {
-        setState(() {});
-      });
+    // _controller = AnimationController(
+    //   vsync: this,
+    //   duration: Duration(milliseconds: 300),
+    //   lowerBound: 0.0,
+    //   upperBound: 0.1,
+    // )
+    // ..addListener(() {
+    //     setState(() {});
+    //   });
 
     WidgetsBinding.instance.addPostFrameCallback((_) =>
         ShowCaseWidget.of(context).startShowCase(
@@ -97,15 +98,23 @@ class _HomepageState extends State<Homepage>
           ),
           actions: [
             CustomShowcaseWidget(
-                globalKey: keyOne,
-                description: 'Light & Dark Theme Mode',
-                child: Switch(
-                    value: light,
-                    onChanged: (value) {
-                      setState(() {
-                        light = value;
-                      });
-                    }))
+              globalKey: keyOne,
+              description: 'Light & Dark Theme Mode',
+              child: Switch(
+                  value: light,
+                  onChanged: (value) {
+                    setState(() {
+                      light = value;
+                    });
+                  }),
+            ),
+            IconButton(
+                icon: Icon(Icons.logout),
+                onPressed: () {
+                  final provider =
+                      Provider.of<GoogleSigninProvider>(context, listen: false);
+                  provider.logout();
+                })
           ],
         ),
         bottomNavigationBar: SizedBox(
@@ -162,13 +171,14 @@ class _HomepageState extends State<Homepage>
                   }
                 })),
         floatingActionButton: FloatingActionButton(
-          child: CustomShowcaseWidget(
-              globalKey: keyFour,
-              description: 'Add New Task',
-              child: Icon(Icons.add)),
-          onPressed: () => showDialog(
-              context: context, child: AddTasks(), barrierDismissible: false),
-        ),
+            child: CustomShowcaseWidget(
+                globalKey: keyFour,
+                description: 'Add New Task',
+                child: Icon(Icons.add)),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => AddNewTask()));
+            }),
       ),
     );
   }

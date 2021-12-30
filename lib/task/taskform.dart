@@ -51,13 +51,20 @@ class Taskform extends StatelessWidget {
               },
               decoration: InputDecoration(
                   hintText: 'Task',
+
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0))),
+                      borderRadius: BorderRadius.circular(20.0)),
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.add),
+                    onPressed: () {
+                      
+                    },
+                  )),
             ),
             SizedBox(
               height: 5,
             ),
-            FlatButton(
+            MaterialButton(
                 onPressed: onSave,
                 child: Text(
                   "Save",

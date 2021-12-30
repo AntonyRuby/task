@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
+import 'package:task/src/models/utils.dart';
 import 'package:task/task/edittaskpage.dart';
 import 'package:task/task.dart';
-import 'package:task/task/tasks.dart';
-import 'package:task/utils.dart';
+import 'package:task/src/models/tasks.dart';
 
 class Taskwidget extends StatelessWidget {
   final Task task;

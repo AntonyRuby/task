@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task/task.dart';
 import 'package:task/task/taskform.dart';
-import 'package:task/task/tasks.dart';
+import 'package:task/src/models/tasks.dart';
 
 class EditTaskPage extends StatefulWidget {
   final Task task;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task/utils.dart';
+import 'package:task/src/models/utils.dart';
 
 class Taskfield {
   static const createdTime = 'createdTime';
@@ -11,12 +11,14 @@ class Task {
   String summary;
   String id;
   bool isDone;
+  String owner;
 
   Task(
       {@required this.createdTime,
       this.id,
       this.isDone = false,
       this.summary = '',
+      this.owner,
       @required this.title});
 
   static Task fromJson(Map<String, dynamic> json) => Task(
@@ -24,7 +26,8 @@ class Task {
       title: json['title'],
       summary: json['summary'],
       id: json['id'],
-      isDone: json['isDone']);
+      isDone: json['isDone'],
+      owner: json['owner']);
 
   Map<String, dynamic> toJson() => {
         'createdTime': Utils.fromDateTimeToJson(createdTime),
@@ -32,5 +35,6 @@ class Task {
         'summary': summary,
         'id': id,
         'isDone': isDone,
+        'owner': owner
       };
 }
